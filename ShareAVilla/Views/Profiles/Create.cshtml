@@ -1,0 +1,35 @@
+﻿@model ShareAVilla.Models.VM.TravelerProfileVM
+
+@{
+    ViewBag.Title = "Create";
+}
+<hr/>
+<h5>Profile</h5>
+<h6>Create</h6>
+
+
+@using (Html.BeginForm("Create", "Profiles", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+    if (IsPost)
+        {
+            @Html.Partial("~/Views/Profiles/TravelerProfileProps.cshtml", Model);
+        }else
+        {
+            @Html.Partial("~/Views/Profiles/TravelerProfileProps.cshtml");
+            }
+
+     <div class="property" style="margin-left: 120px;margin-bottom: 30px">
+        <input type="submit" value="Create" class="btn btn-default" />
+     </div>
+    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

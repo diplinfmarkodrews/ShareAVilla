@@ -1,0 +1,262 @@
+﻿@model ShareAVilla.Models.Find.SearchVM
+
+
+
+<link href="~/Content/jquery.typeahead.css" rel="stylesheet">
+
+
+<style>
+    input[required] {
+        /*border-color:#de6c6c;*/
+    
+    }
+    #scrollable-dropdown-menu .tt-dropdown-menu {
+        max-height: 150px;
+        overflow-y: auto;
+    }
+
+</style>
+<script src="~/Content/jquery.typeahead.js"></script>
+@*<script src="~/Scripts/bloodhound.js"></script>*@
+<script type="text/javascript">
+     
+
+    $(document).ready(function () {
+        
+        Initialize();
+
+    });
+    function Initialize()
+    {
+        
+        $(document).on('input', '#Search_Location', function (e) {
+            var entry = $(this).val()
+            if (entry != "") {
+                //get Destinations from Server
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("ShowGeoLocationString", "Searches")',
+                    data: { 'LocationString': entry, 'lang': "en" },
+                    success: function (results) { writeTextbox(results); },
+                });
+
+                
+            }
+
+        });
+       
+
+    }
+    function writeTextbox(results)
+    {
+        console.log(results[0]);
+        var count = Object.keys(results).length;
+        
+        if (count > 0) {
+            //$('#Search_Location').replaceWith('<select id="Search_Location" name="Search.Location" class="location"></select >');
+            //console.log("SearchLocation set");
+            var resAr = new Array();
+            for (var i = 0; i < count; i++)
+            {
+                resAr.push(results[i].Name);
+            }
+            //var WhereSug = new Bloodhound({
+            //    limit: 5,
+            //    datumTokenizer: Bloodhound.tokenizers.whitespace,
+            //    queryTokenizer: Bloodhound.tokenizers.whitespace,
+            //    local: resAr
+                
+            //});
+            $('.typeahead').typeahead('destroy');
+            console.log(resAr);
+            //WhereSug.initialize();
+            //console.log(WhereSug);
+            $('.typeahead').typeahead({source: resAr, limit: 10});
+            
+        }
+                     
+        
+    }
+    ///
+    //textbox
+   
+</script>
+@*<script src="~/Scripts/awesomplete.js" async></script>
+<script type="text/javascript">
+   
+
+
+    $(document).ready(function () {
+
+        Initialize();
+
+    });
+    function Initialize()
+    {
+
+        $(document).on('input', '#Search_Location', function (e) {
+            var entry = $(this).val()
+            if (entry != "") {
+                //get Destinations from Server
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("ShowGeoLocationString", "Searches")',
+                    data: { 'LocationString': entry, 'lang': "en" },
+                    success: function (results) { writeTextbox(results); },
+                });
+
+
+            }
+
+        });
+
+
+    }
+    function writeTextbox(results)
+    {
+        console.log(results[0]);
+        var count = Object.keys(results).length;
+
+        if (count > 0) {
+
+            var resAr = new Array();
+            for (var i = 0; i < count; i++) {
+                resAr.push(results[i].Name);
+            }
+
+            var input = document.getElementById("#Search_Location");
+            var awesomplete = new Awesomplete(input);
+            awesomplete.list = resAr;
+        }
+    }
+
+</script>*@
+    @if (!IsPost)
+    {
+
+
+    <div class="form-wrapper">
+            
+              
+        <div class="search-elem">
+           
+            <div class="typeahead__container">
+                <div class="typeahead__field">
+
+                    <span class="typeahead__query">
+                        <input type="search" class="typeahead" autocomplete="off" required data-val-required="The Destination is required!" id="Search_Location" name="Search.Location" placeholder="Where ... ?" />
+                    </span>
+                        
+
+                </div>
+            </div>
+        
+            
+            
+                
+                @*<span class="error" aria-live="polite"></span>*@
+           
+        </div>
+        <div class="search-elem">
+            <input type="text" autocomplete="off" class="date" required="" onfocus="(this.type='date')" data-val="false" data-val-required="Check-in is required!" id="Search_CheckIn" name="Search.CheckIn" placeholder="Check-in" />
+            @*<span class="error" aria-live="polite"></span>*@
+        </div>
+        <div class="search-elem">
+            <input type="text" autocomplete="off" class="date" required="" onfocus="(this.type = 'date')" data-val="false" data-val-required="Check-out is required!" id="Search_CheckOut" name="Search.CheckOut" placeholder="Check-out" />
+        </div>
+                @*<span class="error" aria-live="polite"></span>*@
+        <div class="search-elem">
+            <select class="numbed" data-val="false" required="" data-val-required="Number of Bedrooms is required!" id="Search_BedRooms" name="Search.BedRooms" placeholder="Bedrooms">
+                <option value="" selected disabled="" class="fa fa-bed">Bedrooms</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">more</option>
+
+            </select>
+            @*<span class="error" aria-live="polite"></span>*@
+        </div>
+                    
+        
+        <div class="search-elem">
+                        <button type="submit">Search</button>
+                    </div>
+
+                    </div>
+    }
+    else
+    {
+        <div class="form-wrapper">
+
+            @*<input class="typeahead" type="text" placeholder="States of USA">*@
+
+            <div class="search-elem">
+
+                <div class="typeahead__container">
+                    <div class="typeahead__field">
+
+                        <span class="typeahead__query">
+                            <input type="search" class="typeahead" autocomplete="off" required data-val-required="The Destination is required!" id="Search_Location" name="Search.Location" value="@Model.Search.Location" placeholder="Where ... ?" />
+                        </span>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-elem">
+                @{
+                    DateTime checkin = DateTime.Parse(Model.Search.CheckIn);
+                <input type="date" autocomplete="off" class="date" required="" data-val="false" data-val-required="Check-in is required!" id="Search_CheckIn" name="Search.CheckIn" value="@Model.Search.CheckIn" placeholder="Check-in" />
+                @*<span class="error" aria-live="polite"></span>*@
+                    }
+            </div>
+            <div class="search-elem">
+               
+                    <input type="date" autocomplete="off" class="date" required="" data-val="false" data-val-required="Check-out is required!" id="Search_CheckOut" name="Search.CheckOut" value="@Model.Search.CheckOut" placeholder="Check-out" />
+               
+            </div>
+                    @*<span class="error" aria-live="polite"></span>*@
+            <div class="search-elem">
+                @{ 
+
+                    string select2 = "";
+                    string select3 = "";
+                    string select4 = "";
+                    string select5 = "";
+                    string select6 = "";
+
+                    switch (Model.Search.BedRooms)
+                    {
+                        case 2: select2 = "selected"; break;
+                        case 3: select3 = "selected"; break;
+                        case 4: select4 = "selected"; break;
+                        case 5: select5 = "selected"; break;
+                        case 6: select6 = "selected"; break;
+                    }
+
+                <select class="numbed" data-val="false" required="" data-val-required="Number of Bedrooms is required!" id="Search_BedRooms" name="Search.BedRooms" value="@Model.Search.BedRooms" placeholder="Bedrooms">
+                    <option value="" disabled="" class="fa fa-bed">Bedrooms</option>
+                    <option @select2 value="2">2</option>
+                    <option @select3 value="3">3</option>
+                    <option @select4 value="4">4</option>
+                    <option @select5 value="5">5</option>
+                    <option @select6 value="6">more</option>
+
+                </select>
+                }
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <button type="submit">Search</button>
+
+
+        </div>
+
+
+
+
+
+        }
+

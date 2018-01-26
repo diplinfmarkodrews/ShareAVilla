@@ -1,0 +1,159 @@
+﻿@model ShareAVilla.Models.VM.TravelerProfileVM
+<style type="text/css">
+    .property-col {
+        margin-left: 80px;
+        text-align: right;
+    }
+    .property 
+    {
+        margin-top: 15px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        document.getElementById("Avatar").onchange = function () {
+            document.getElementById("uploadFile").value = this.value;
+        };
+    });
+</script>
+    
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.AttributesVM.ID)
+    @Html.HiddenFor(model => model.DescriptionVM.ID)
+
+
+<div class="property-col">
+
+    @if (Model.DescriptionVM.ProfilePic != null)
+    {
+        <div class="property profilpic">
+            @HtmlCustomHelper.Image(Html, Model.DescriptionVM.ProfilePic.Content, "profilepic")
+        </div>
+    }
+
+
+
+    <div class="property">
+
+        @Html.LabelFor(model => model.DescriptionVM.Name, new { @class = "labellogin", style = "margin-right:10px" })
+        <div class="col-md-2 textboxinput">
+            <input name="DescriptionVM.Name" class="form-control" id="DescriptionVM_Name" type="text" value="@Model.DescriptionVM.Name" data-val-required='The Name is required' data-val="true">
+            @*@Html.EditorFor(model => model.DescriptionVM.Name, new { @class="form-", type="text" })*@
+            @Html.ValidationMessageFor(model => model.DescriptionVM.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="property">
+        @Html.LabelFor(model => model.DescriptionVM.Age, new { @class = "labellogin", style = "margin-right:10px" })
+        <div class="col-md-2 textboxinput">           
+            @Html.TextBoxFor(model => model.DescriptionVM.Age, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date"})
+            @Html.ValidationMessageFor(model => model.DescriptionVM.Age, "", new { @class = "text-danger" })        
+        </div>
+    </div>
+
+    <div class="property">
+
+        @Html.LabelFor(model => model.DescriptionVM.Sex, new { @class = "labellogin", style = "margin-right:10px" })
+
+        <div class="col-md-2 textboxinput">
+            @Html.DropDownListFor(model => model.DescriptionVM.Sex, new List<SelectListItem>
+                {
+                        new SelectListItem() {Text = "Male", Value="Male"},
+                        new SelectListItem() {Text = "Female", Value="Female"},
+                }, new { @class = "form-control" })
+            
+        </div>
+    </div>
+    
+    <div class="property">
+        @Html.LabelFor(model => model.DescriptionVM.Text, new { @class = "labellogin", style = "margin-right:10px" })
+        <div class="col-md-2 textmultiline">
+            <textarea name="DescriptionVM.Text" class="text-box multi-line form-control" id="DescriptionVM_Text">@Html.Raw(Model.DescriptionVM.Text))
+            </textarea>
+            @*@Html.EditorFor(model => model.DescriptionVM.Text, new { @class = "form-control", type="text" })*@
+            @Html.ValidationMessageFor(model => model.DescriptionVM.Text, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="property">
+        @Html.LabelFor(model => model.AttributesVM.Currency, new { @class = "labellogin", style = "margin-right:10px" })
+
+        <div class="col-md-2 textboxinput">
+            @Html.DropDownListFor(model => model.AttributesVM.Currency, new List<SelectListItem>
+                            {
+                            new SelectListItem() {Text = "Euro", Value="eur"},
+                            new SelectListItem() {Text = "US Dollar", Value="usd"},
+                            }, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.AttributesVM.Currency, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+        <div class="property">
+
+            @Html.LabelFor(model => model.AttributesVM.NoiseLevel, new { @class = "labellogin", style="margin-right:10px" })
+
+            <div class="col-md-2 textboxinput">
+                @Html.DropDownListFor(model => model.AttributesVM.NoiseLevel, new List<SelectListItem>
+                        {
+                        new SelectListItem() {Text = "Quiet please!", Value="1"},
+                        new SelectListItem() {Text = "Nevermind", Value="2"},
+                        new SelectListItem() {Text = "Party on!", Value="3"},
+                        }, new { @class="form-control"})
+
+                @Html.ValidationMessageFor(model => model.AttributesVM.NoiseLevel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        
+        <div class="propertygroup">
+            <div class="property">
+                <div class="property-check">
+                    @Html.LabelFor(model => model.AttributesVM.IsSmoking, new { @class = "labellogin" })
+                    @Html.EditorFor(model => model.AttributesVM.IsSmoking)
+                </div>
+
+            </div>
+
+            <div class="property">
+                <div class="property-check">
+                    @Html.LabelFor(model => model.AttributesVM.HasPets, new { @class = "labellogin" })
+                    @Html.EditorFor(model => model.AttributesVM.HasPets)
+                </div>
+            </div>
+            <div class="property">
+                <div class="property-check">
+                    @Html.LabelFor(model => model.AttributesVM.IsVegetarian, new { @class = "labellogin" })
+                    @Html.EditorFor(model => model.AttributesVM.IsVegetarian)
+                </div>
+            </div>
+            <div class="property">
+                <div class="property-check">
+                    @Html.LabelFor(model => model.AttributesVM.Nomad, new { @class = "labellogin" })
+                    @Html.EditorFor(model => model.AttributesVM.Nomad)
+                </div>
+            </div>
+            <div class="property">
+                <div class="property-check">
+                    @Html.LabelFor(model => model.AttributesVM.Yoga, new { @class = "labellogin" })
+                    @Html.EditorFor(model => model.AttributesVM.Nomad)
+                </div>
+            </div>
+        </div>
+   
+        <div class="property" style="margin-top:20px">
+            @Html.Label("Profile Picture:", new { @class = "labellogin", style = "margin-right:10px" })      
+            <div class="col-md-2">
+            <input id="uploadFile" placeholder="File path"  class="textinput form-control" />
+            </div>
+            <div class="fileUpload">
+                <span class=" btn">Choose</span>
+                <input type="file" id="Avatar" class="upload" name="DescriptionVM.upload" accept=".jpg, .jpeg, .png, .gif" />
+            </div>            
+        </div>
+
+
+</div>   
+
+                

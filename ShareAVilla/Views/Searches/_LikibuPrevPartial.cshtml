@@ -1,0 +1,133 @@
+﻿@model ShareAVilla.Models.Accommodation.Likibu.Offer
+<style type="text/css">
+    .pricing {
+        background-color: black;
+        opacity: 0.6;
+    }
+
+        .pricing:hover {
+            opacity: 1.0;
+        }
+
+</style>
+     
+
+
+<div class="row">
+    <div class="lkb-offer-card" data-id="@Model.offerID" itemprop="offers" itemscope="">
+        @*col-lg-4 col-md-6 col-sm-6 col-xs-12*@
+        <a class="fa fa-info-circle lkb-pp" data-toggle="pdt-modal" href="@Model.URL" style="z-index:3000"></a>
+        <a data-toggle="interstitial" class="" data-partner="travelmob" data-lbv="NA\2" href="@Url.Action("Details", "Searches", new { id = Model.offerID })">
+            @* here comes Url of partner *@
+            <div class="thumb">
+                <div class="pricing" style="z-index:1000">
+                    <span class="from">
+                        From                                    <br>
+                    </span>
+                    <span class="price">
+                        <span itemprop="price">@Model.PriceNight @ShareAVilla.Models.Request.Request.CurrencySign(Model.Currency)</span>
+                        <span class="per-night">/ night</span>
+                    </span>
+                </div>
+
+
+
+                <div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide20" style="position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"><img src="@Model.Thumbnails.FirstOrDefault()" style="height: 216px; opacity: 1;"></div>
+                <div class="thumbnails slick-initialized slick-slider">
+                    <div aria-live="polite" class="slick-list draggable">
+                        <div class="slick-track" style="opacity: 1; width: 3468px;" role="listbox">
+                            @for (int i = 1; i < Model.Thumbnails.Count; i++)
+                            {
+                                <div class="slick-slide" data-slick-index="0" aria-hidden="true" style="width: 289px; position: relative; left: 0px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease;" tabindex="-1" role="option" aria-describedby="slick-slide160"><img src="@Model.Thumbnails.ElementAt(i)" style="height: 177px; opacity: 1;"></div>
+                            }
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row details">
+                <div class="title col-xs-12" itemprop="name">@Model.Title</div>
+                <div class="amenities col-xs-9">
+                    <div class="partner">
+                        <img src="@Model.SourceSlug" alt="@Model.SourceName">
+                    </div>
+
+                    <ul>
+                        @if (string.Compare(Model.SurfaceSquareMeters, "0") != 0)
+                        {
+                            <li><span class="units grey">@Model.SurfaceSquareMeters m²</span></li>
+                        }
+                        <li>
+                            <span class="units">@Model.MaxGuests</span>
+                            <span class="lkb-icon lkb-icon-guest">
+                                <span class="sr-only">@Model.MaxGuests</span>
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="units">@Model.BedRooms</span>
+                            <span class="lkb-icon lkb-icon-room">
+                                <span class="sr-only">Bedrooms : @Model.BedRooms</span>
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="units">@Model.BathRooms</span>
+                            <span class="lkb-icon lkb-icon-bathroom">
+                                <span class="sr-only">Bathrooms : @Model.BathRooms</span>
+                            </span>
+                        </li>
+
+
+                        @*<li>
+                                <span class="lkb-icon lkb-icon-jacuzzi">
+                                    <span class="sr-only">Jacuzzi</span>
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lkb-icon lkb-icon-pool">
+                                    <span class="sr-only">Pool</span>
+                                </span>
+                            </li>
+
+
+                            <li>
+                                <span class="lkb-icon lkb-icon-ac">
+                                    <span class="sr-only">Air conditioning</span>
+                                </span>
+                            </li>
+
+
+
+                            <li>
+                                <span class="lkb-icon lkb-icon-net">
+                                    <span class="sr-only">Internet / Wifi</span>
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lkb-icon lkb-icon-parking">
+                                    <span class="sr-only">Parking</span>
+                                </span>
+                            </li>*@
+
+                    </ul>
+                </div>
+                <div class="rank col-xs-3">
+                    <span class="rank-2 no-rank">
+                        <span class="lkb-icon-rank-2"></span>
+                        <span class="average">@Model.AverageRating / 5</span>
+                        <span class="count">@Model.RatingCount</span>
+                    </span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </a>
+        <div class="compare" data-offers="1">
+            @Html.ActionLink("Start Request", "Create", "Requests", new { id = Model.offerID, thumb = Model.Thumbnails.FirstOrDefault(), Location = Model.Destination }, null)
+        </div>
+    </div>
+</div>

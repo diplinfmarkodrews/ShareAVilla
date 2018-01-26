@@ -1,0 +1,49 @@
+﻿@model ShareAVilla.Models.Accommodation.Likibu.Offer
+
+@{
+    ViewBag.Title = "Details Accommodation";
+}
+
+    <hr />
+    @*Display Pictures*@
+   <div>
+     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayFor(model => model.Title)
+        </dt> 
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>        
+        <dd>
+            @Html.DisplayFor(model => model.BedRooms)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.BathRooms)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.PriceNight)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.PriceWeek)
+        </dd>        
+        <dd>
+            @Html.DisplayFor(model => model.PrivacyType)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amenities)
+        </dd>
+             
+         <dd>
+             @Html.DisplayFor(model => model.URL)
+         </dd>
+
+    </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Back to List", "Search")
+</p>

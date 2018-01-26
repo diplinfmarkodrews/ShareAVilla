@@ -1,0 +1,65 @@
+﻿@model ShareAVilla.Models.VM.ProfilePreviewVM
+<style type="text/css">
+    .profile-prev {
+        /*margin-left:10px;*/
+        height: 143px;
+        width: 104px;
+        border-style:solid;
+        border-width:2px;
+        background-color:#ffffff;
+        border-color:black;
+        opacity:1.0;
+
+    }
+    .picprev 
+    {
+        display:flex;
+        align-items:stretch;
+        height:100px;
+        width:101px;
+        
+    }
+    .ratingprev {
+        display: flex;
+        width: 120%;
+        align-content: stretch;
+        margin-left:2px;
+    }
+    .contentprev {
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        
+    }
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
+        a:hover,
+        a:focus {
+            color: black;
+            text-decoration: underline;
+        }
+</style>
+
+<div class="profile-prev">   
+    <a href="@Url.Action("Details", "Profiles", new { id = Model.ID })" class="form-inline">
+        <div class="contentprev">
+            <div style="font:15px arial, verdana;color:black">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div>
+                @HtmlCustomHelper.Image(Html, Model.ProfilePic.ContentMini, "picprev")
+            </div>
+            <div class="ratingprev">
+                @Html.Partial("~/Views/Shared/_ReadRatingPartial.cshtml", Model.Score.ToString())
+            </div>   
+        </div>
+        
+    </a>
+    
+        
+   
+</div>
+

@@ -1,0 +1,41 @@
+﻿@model string
+    
+
+@*<link rel="stylesheet" href="~/Content/fontawesome-stars.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">*@
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>*@
+
+@*<script src="~/Scripts/jquery.barrating.js"></script>*@
+
+
+<link rel="stylesheet" href="~/Content/jquery.rateyo.css" />
+<script src="~/Scripts/jquery.rateyo.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var value = @Html.Raw(Model.Replace(',', '.'));
+        
+        if (value == "0") { value = "0.0"; }
+        console.log("\nprinting value:" + value);
+        var oldid = 'starrating' + '@Model.Replace(',', 'i')';
+        console.log(oldid);
+        //var id = (Math.random() * 1000).toString();
+        //var elem = $(document).getElementById(oldid);
+        //elem.id = id;
+        $(document.getElementById(oldid)).rateYo({
+            rating: value,
+            readOnly: true,
+            normalFill: "#000",
+            starWidth: "20px"
+        });
+
+   
+    });
+</script>
+@{
+    string starrating = "starrating" + Model.Replace(',', 'i');
+    <div id="@starrating" style="margin-left:4px"></div>
+
+
+    }

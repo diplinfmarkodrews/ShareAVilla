@@ -1,0 +1,107 @@
+﻿@model  ShareAVilla.Models.RoomRequest.RReqVMListRqOwn         
+       
+@{
+    ViewBag.Title = "Choose Flatmates";
+}
+
+
+<h4>Flat Mates</h4>
+<h5>Select</h5>
+<br/>
+<div style="margin-left:30px">
+    <div class="property">
+
+        @Html.LabelFor(model => model.RoomRequestsStats, htmlAttributes: new { @class = "labellogin" })
+    </div>
+    <div class="property">
+        @Html.DisplayFor(model => model.RoomRequestsStats)
+
+    </div>
+    <hr />
+    @if (Model.RoomRequests.Count > 0)
+    {
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.LabelFor(model => model.RoomRequests.FirstOrDefault().Flatmate, htmlAttributes: new { @class = "labellogin" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.RoomRequests.FirstOrDefault().CheckIn, htmlAttributes: new { @class = "labellogin" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.RoomRequests.FirstOrDefault().CheckOut, htmlAttributes: new { @class = "labellogin" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.RoomRequests.FirstOrDefault().RoomType, htmlAttributes: new { @class = "labellogin" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.RoomRequests.FirstOrDefault().TravelerPrice, htmlAttributes: new { @class = "labellogin" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.RoomRequests.FirstOrDefault().CalcPriceSales, htmlAttributes: new { @class = "labellogin" })
+                </th>
+
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model.RoomRequests)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.Partial("~/Views/Shared/_ProfilePrevPartial.cshtml", item.Flatmate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckIn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckOut)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoomType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TravelerPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CalcPriceSales)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Show Details", "DetailsHost", "RoomRequests", new { id = item.ID }, null)  @*//id roomrequest*@
+                        </td>
+                        <td>
+                            @Html.ActionLink(linkText: "Approve", actionName: "SelectFlatmates", routeValues: new { id = Model.RequestID, update = 1, rrqid = item.ID }, htmlAttributes: null)
+                        </td>
+                        <td>
+                            @Html.ActionLink(linkText: "Decline", actionName: "SelectFlatmates", routeValues: new { id = Model.RequestID, update = -1, rrqid = item.ID }, htmlAttributes: null)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Make Proposal", "Propose", new { id = item.ID, rqid = Model.RequestID })
+                        </td>
+
+                    </tr>
+                }
+            }
+        </table>
+
+    }
+    else
+    {
+        <h5>No Flatmates waiting for approval</h5>
+
+    }
+    <br />
+</div>
+    @Html.ActionLink("Back Home", "Index", "Home") |
+    @Html.ActionLink("Reservations", "Reservations", "Requests", new { id = Model.RequestID }, null)
+

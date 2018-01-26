@@ -1,0 +1,70 @@
+﻿@model ShareAVilla.Models.Request.RequestVMOwner
+
+
+<style type="text/css">
+    .dl-horizontal 
+    {
+        background-position-x:left;
+        margin-left:10px;        
+    }
+
+</style>
+@{
+    ViewBag.Title = "Delete Request";
+}
+<hr/>
+<h4>Delete</h4>
+<h5>Are you sure you want to cancel/delete this request?</h5>
+
+  
+    <dl class="dl-horizontal" style="margin-top:30px;margin-bottom:40px">
+        
+
+        <dt class="labellogin">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="labellogin">
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+        <dt class="labellogin">
+            @Html.DisplayNameFor(model => model.CheckOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOut)
+        </dd>
+        <dt class="labellogin">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+        <dt class="labellogin">
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="margin-left:120px">
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+        </div>
+        <div style="margin-top:40px;margin-left:20px;margin-bottom:40px">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+

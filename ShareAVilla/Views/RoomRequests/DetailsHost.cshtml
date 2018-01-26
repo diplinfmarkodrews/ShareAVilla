@@ -1,0 +1,25 @@
+﻿@model ShareAVilla.Models.RoomRequest.RoomRequestVMOwner
+         
+@{
+    ViewBag.Title = "Details";
+}
+
+<h4>Room Request</h4>
+<h5>Details</h5>
+<hr/>
+
+@Html.Partial("~/Views/RoomRequests/_RoomRequestSpecs.cshtml", Model)
+
+
+
+@if (!Model.user)
+{
+<p>
+    
+    @Html.ActionLink("Back to Overview", "SelectFlatmates", new { id = Model.Request_ID, update = 0, rrqid = 0 })
+</p>
+}
+else
+{
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+}
