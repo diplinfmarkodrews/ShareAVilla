@@ -1,0 +1,41 @@
+﻿@model ShareAVilla.Models.Request.SelectRoomVM
+
+@{
+    ViewBag.Title = "SelectRoom";
+}
+<hr/>
+<h2>Request</h2>
+<h4>Select Room</h4>
+<hr/>
+<div>
+  
+    <div>
+        @Html.DisplayText("Applicant")
+        @Html.Partial("~/Views/RoomRequests/_RoomRequestSpecs.cshtml", Model.RoomRequestVMApplicant)
+    </div>
+    <hr/>
+    @foreach (var room in Model.BedRooms)
+    {
+        @Html.Partial("~/Views/Accommodations/_BedRoomSpecsPartial.cshtml", room)
+        <hr/>
+        if (Model.ListReservations.Count > 0)
+        {
+            foreach (var reservation in Model.ListReservations)
+            {
+
+                if (reservation.Room_ID == room.ID)
+                {
+                <hr/>
+                @Html.Partial("~/Views/RoomRequests/_RoomRequestSpecs.cshtml", reservation)
+                }
+            }
+
+
+        }
+        @Html.ActionLink("Reserve", "ReserveRoom", new { id = room.ID, idrrq = Model.RoomRequestVMApplicant.ID })
+    }
+
+</div>
+<p>    
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,84 @@
+﻿@model ShareAVilla.Models.Find.SearchVM
+<styles>
+
+
+
+</styles>
+
+@if (Model != null)
+{
+<div class="propertygroup">
+    <div class="property-col">
+       
+        @Html.LabelFor(model => model.Search.FilterProps.AcomType, new { @class = "labellogin" })
+       
+        <div class="col-md-3 textboxinput">
+            @Html.DropDownListFor(model => model.Search.FilterProps.AcomType, new List<SelectListItem>
+                {
+                        new SelectListItem() {Text = "All", Value=""},
+                        new SelectListItem() {Text = "Apartment", Value="apartment"},
+                        new SelectListItem() {Text = "House", Value="house"},
+                        new SelectListItem() {Text = "Villa", Value="villa"},
+                        new SelectListItem() {Text = "Lodge", Value="lodge"},
+                        new SelectListItem() {Text = "Castle", Value="castle"},
+                        new SelectListItem() {Text = "Caravan", Value="caravan"},
+                        new SelectListItem() {Text = "Resort", Value="resort"},
+                }, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Search.FilterProps.AcomType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="price-container">
+        <div class="property-col">
+           
+                @Html.LabelFor(model => model.Search.FilterProps.PriceMax, new { @class = "labellogin" })
+           
+            <div class="col-md-3">
+                <input class="form-control" id="Search_FilterProps_PriceMin" name="Search.FilterProps.PriceMin" type="range" value="" min="0">
+                @*@Html.EditorFor(model => model.Search.FilterProps.PriceMax)*@                
+            </div>
+        </div>
+        <div class="property-col">                           
+            @Html.LabelFor(model => model.Search.FilterProps.PriceMin, new { @class = "labellogin" })            
+            <div class="col-md-3">
+                <input class="form-control" id="Search_FilterProps_PriceMin" name="Search.FilterProps.PriceMin" type="range" value="" min="0">
+               @* @Html.EditorFor(model => model.Search.FilterProps.PriceMin)*@
+                
+            </div>
+        </div>
+    </div>
+    <div class="property-col">        
+            @Html.LabelFor(model => model.Search.FilterProps.Sort, new { @class = "labellogin" })        
+        <div class="textboxinput">
+            @Html.DropDownListFor(model => model.Search.FilterProps.AcomType, new List<SelectListItem>
+                {
+                        new SelectListItem() {Text = "reco", Value="reco"},
+                        new SelectListItem() {Text = "asc price", Value="price_asc"},
+                        new SelectListItem() {Text = "dsc price", Value="price_dsc"},
+
+                }, new { @class = "form-control col-md-3" })
+            @Html.ValidationMessageFor(model => model.Search.FilterProps.AcomType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="property-col">
+        
+        <div class="property">
+            <div class="labellogin">Results @Html.Raw(Model.LikibuResults.TotalResults) on @Html.Raw(Model.LikibuResults.TotalPages)</div>
+        </div>
+        <div class="property">
+            <div class="labellogin">Page: @Html.Raw(Model.Search.FilterProps.Page)</div>
+        </div>
+
+       
+    </div>
+        @*<div class="filter-amenis">
+            <div class="amenis-label">
+                @Html.LabelFor(model => model.Search.FilterProps.Amenities)
+            </div>
+            <div class="checkbox">
+                @Html.EditorFor(model => model.AttributesVM.IsSmoking)
+                @Html.ValidationMessageFor(model => model.AttributesVM.IsSmoking, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+</div>
+}

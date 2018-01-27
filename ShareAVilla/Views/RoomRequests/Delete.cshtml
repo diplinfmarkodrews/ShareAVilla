@@ -1,0 +1,60 @@
+﻿@model ShareAVilla.Models.RoomRequest.RoomRequestVMUser
+
+<style type="text/css">
+    
+    .property 
+    {
+        margin-left:50px;
+    }
+
+</style>  
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h4>Delete</h4>
+
+<h5>Are you sure you want to delete this?</h5>
+<hr/>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.LabelFor(model => model.CheckIn, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.CheckOut, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOut)
+        </dd>
+    
+        <dt>
+            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+    </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="property" style="margin-bottom:20px;margin-left:180px">
+                <input type="submit" value="Delete" class="btn btn-default" /> 
+                
+            </div>
+            <br/>
+            @Html.ActionLink("Back to List", "Index")
+            
+        }
+

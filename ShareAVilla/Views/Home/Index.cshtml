@@ -1,0 +1,39 @@
+﻿@model ShareAVilla.Models.Find.SearchVM
+@{
+    ViewBag.Title = "Home";
+}
+<style type="text/css">
+
+    #background {
+        background-image: url(../../Images/background2.jpg);
+        height: 750px;
+        width: 100%;
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top left;
+        z-index: 0;
+    }
+    
+</style>
+   
+        <div class="slogan">
+            The Accommodation platform for nomads, expats and remote workers ...           
+            <div class="description" style="margin-bottom:30px">
+                Find villas, maisons and apartments and choose your flatmates rightaway or find the sharedliving community you want!
+            </div>
+        </div>        
+        <div class="searchbar">
+            
+           
+            @Html.Partial("~/Views/Home/_SearchPartialHome.cshtml")
+           
+        </div>
+    
+
+
+
+
+
+
+ 

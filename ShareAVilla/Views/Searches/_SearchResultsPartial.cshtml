@@ -1,0 +1,46 @@
+﻿@model ShareAVilla.Models.Find.SearchVM
+    <style type="text/css">
+        .search-item 
+        {
+            width:30%;
+            height:100%;
+
+        }
+
+    </style>
+
+<div class="searchresults">
+    @if (IsPost)
+    {
+
+        if (Model != null)
+        {
+
+
+
+            if (Model.RequestResults.RequestList != null)
+            {
+                foreach (var item in Model.RequestResults.RequestList)
+                {
+                    <div class="search-item">
+                        @Html.Partial("~/Views/Requests/_RequestPrevPartial.cshtml", item)
+                    </div>
+                }
+
+            }
+            if (Model.LikibuResults.Offers != null)
+            {
+                foreach (var item in Model.LikibuResults.Offers)
+                {
+
+                    <div class="search-item">
+                        @Html.Partial("~/Views/Searches/_LikibuPrevPartial.cshtml", item)
+                    </div>
+                }
+
+
+            }
+        }
+    }
+
+</div>

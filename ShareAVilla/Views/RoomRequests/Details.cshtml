@@ -1,0 +1,189 @@
+﻿@model ShareAVilla.Models.RoomRequest.RoomRequestVMUser
+
+@{
+    ViewBag.Title = "Details";
+}
+<h4>Room Request</h4>
+<h5>Details</h5>
+<hr />
+<div>    
+    
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.CheckIn, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.CheckOut, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOut)
+        </dd>
+
+        
+       @if (Model.Status == ShareAVilla.Models.RoomRequest.RoomRequestResponseStatus.Proposed)
+       {
+        <dt>
+            @Html.LabelFor(model => model.PriceOwner, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceOwner)
+        </dd>
+        }
+       
+        @if (Model.RqType == ShareAVilla.Models.Request.RequestType.Bound)
+        {
+
+        <dt>
+            @Html.LabelFor(model => model.PricePNigthPRoom, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PricePNigthPRoom)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.PricePWeekPRoom, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PricePWeekPRoom)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.PricePMonthPRoom, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PricePMonthPRoom)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.PricePRoomPTime, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PricePRoomPTime)
+        </dd>
+        }
+        @if (Model.RqType == ShareAVilla.Models.Request.RequestType.Free)
+        {
+        <dt>
+            @Html.LabelFor(model => model.PriceSpan, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceSpan)
+        </dd>
+        }
+
+        <dt>
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.BedRooms, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BedRooms)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.ShareRoom, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShareRoom)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.DoubleBed, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoubleBed)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.SingleBed, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SingleBed)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.Roomtype, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roomtype)
+        </dd>
+
+        @if (Model.Status == ShareAVilla.Models.RoomRequest.RoomRequestResponseStatus.Proposed)
+        {
+
+        <dt>
+            @Html.LabelFor(model => model.ShareRoomOwner, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShareRoomOwner)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.DoubleBedOwner, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoubleBedOwner)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.SingleBedOwner, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SingleBedOwner)
+        </dd>
+        }
+
+
+        <dt>
+            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "labellogin" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @if (Model.Status != ShareAVilla.Models.RoomRequest.RoomRequestResponseStatus.Approved && Model.Status != ShareAVilla.Models.RoomRequest.RoomRequestResponseStatus.Reserved)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) 
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

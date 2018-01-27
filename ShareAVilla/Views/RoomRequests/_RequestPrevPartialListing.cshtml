@@ -1,0 +1,146 @@
+﻿@model ShareAVilla.Models.RoomRequest.RoomRequestListUser
+      
+
+
+<style type="text/css">
+    
+    .a:hover {
+        background-color: black;
+        opacity: 1.0;
+    }
+    .pricing {
+        background-color: black;
+        opacity: 0.6;
+    }
+        .pricing:hover {
+            background-color: black;
+            opacity: 1.0;
+        }
+    .mini {
+        zoom: 0.4;
+        -webkit-transform: scale(0.4);
+        z-index: 1000;
+    }
+    
+</style>
+
+
+@*<div>
+    <div class="form-group">
+        <div class="result-item-rq">
+            <a href="@Url.Action("Details", "Requests", new { id = Model.ID })">
+                
+                <img src="@Url.Content(Model.Thumb)" />
+                
+                <div class="up-left">
+                    @Html.Partial("~/Views/Shared/_ProfilePrevPartial.cshtml", Model.Host)
+                </div>
+                <div class="title"><span>@Model.Title</span></div>
+                <div><span class="checkin">@Model.CheckIn.ToString("dd.MM.yy")-@Model.CheckOut.ToString("dd.MM.yy")</span></div>                
+                <div><span class="glyicon fa fa-bed">@Model.BedRooms</span></div>
+                <div class="last"><span class="glyicon fa fa-dollar">Price per Night: @Model.PricePNightPRoom</span></div>
+            </a>
+        </div>
+    </div>
+</div>*@
+
+    <div class="lkb-offer-card" data-id="@Model.ID" itemprop="offers" itemscope="">
+        @*col-lg-4 col-md-6 col-sm-6 col-xs-12*@
+        
+        <a data-toggle="interstitial" class="" data-partner="" data-lbv="NA\2" href="@Url.Action("Details", "Requests", new { id = Model.ID })">
+
+            <div class="thumb">
+
+                <div class="slick-slide slick-current slick-active col-md-12" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide20" style="position: relative; left: 0px; top: 3px; z-index: 999; opacity: 1;"><img src="@Model.Thumb" style="height: 216px; opacity: 1;"></div>
+                @*<div class="thumbnails slick-initialized slick-slider">
+                    <div aria-live="polite" class="slick-list draggable">
+                        <div class="slick-track" style="opacity: 1; width: 3468px;" role="listbox">
+                            @for (int i = 1; i < Model.Thumbnail; i++)
+                            {
+                                <div class="slick-slide" data-slick-index="0" aria-hidden="true" style="width: 289px; position: relative; left: 0px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease;" tabindex="-1" role="option" aria-describedby="slick-slide160"><img src="@Model.Thumbnails.ElementAt(i)" style="height: 177px; opacity: 1;"></div>
+                            }
+
+
+                        </div>
+                    </div>
+
+                </div>*@
+
+            </div>
+
+        </a>
+            <div class="row details">
+                <div class="title col-xs-12" itemprop="name">@Model.Title</div>
+                <div class="amenities col-xs-9">
+                    @*<div class="partner">
+                            <img src="@Model.SourceSlug" alt="@Model.SourceName">
+                        </div>*@
+
+                    <ul>
+                        @*<li><span class="units grey">@Model.SurfaceSquareMeters m²</span></li>*@
+
+                        @*<li>
+                                <span class="units">@Model.MaxGuests</span>
+                                <span class="lkb-icon lkb-icon-guest">
+                                    <span class="sr-only">@Model.MaxGuests</span>
+                                </span>
+                            </li>*@
+
+                        <li>
+                            <span class="units">@Model.BedRooms</span>
+                            <span class="lkb-icon lkb-icon-room">
+                                <span class="sr-only">Bedrooms : @Model.BedRooms</span>
+                            </span>
+                        </li>
+
+                        @*<li>
+                            <span class="units">@Model.RoomRequests</span>
+                            <span class="lkb-icon lkb-icon-bathroom">
+                                <span class="sr-only">Applicants : @Model.RoomRequests</span>
+                            </span>
+                        </li>*@
+
+
+                        @*<li>
+                                <span class="lkb-icon lkb-icon-jacuzzi">
+                                    <span class="sr-only">Jacuzzi</span>
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lkb-icon lkb-icon-pool">
+                                    <span class="sr-only">Pool</span>
+                                </span>
+                            </li>
+
+
+                            <li>
+                                <span class="lkb-icon lkb-icon-ac">
+                                    <span class="sr-only">Air conditioning</span>
+                                </span>
+                            </li>
+
+
+
+                            <li>
+                                <span class="lkb-icon lkb-icon-net">
+                                    <span class="sr-only">Internet / Wifi</span>
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="lkb-icon lkb-icon-parking">
+                                    <span class="sr-only">Parking</span>
+                                </span>
+                            </li>*@
+
+                    </ul>
+                </div>
+                <div class="col-xs-3">
+                    <span class="mini">
+                        @Html.Partial("~/Views/Shared/_ProfilePrevPartial.cshtml", Model.RqOwnerPrev)
+                    </span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+    </div>

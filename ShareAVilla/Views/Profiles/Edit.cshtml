@@ -1,0 +1,33 @@
+﻿@model ShareAVilla.Models.VM.TravelerProfileVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+<hr/>
+<h4>Profile</h4>
+<h5>Edit</h5>
+
+
+@using (Html.BeginForm("Edit", "Profiles", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()            
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+    if (Model != null)
+    {
+        @Html.Partial("~/Views/Profiles/TravelerProfileProps.cshtml", Model);
+    }
+    else
+    {
+        @Html.Partial("~/Views/Profiles/TravelerProfileProps.cshtml");
+    }
+               
+        <div class="property" style="margin-left: 150px;margin-bottom: 30px">            
+                <input type="submit" value="Save" class="btn btn-default" />           
+        </div>
+  
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

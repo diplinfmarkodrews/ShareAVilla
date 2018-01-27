@@ -1,0 +1,131 @@
+﻿@model ShareAVilla.Models.RoomRequest.ReservationsVM
+          
+<style type="text/css">
+    .setdown {
+        margin-top:30px;
+    }
+    .labelnumbers {
+        font-size: 8px;
+        font-style: oblique;
+        width: 35px;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <th>
+            
+        </th>
+
+        <th>
+            @Html.LabelFor(model => model.Approvals.FirstOrDefault().CheckIn, htmlAttributes: new { @class = "labellogin" })
+        </th>
+        <th>
+            @Html.LabelFor(model => model.Approvals.FirstOrDefault().CheckOut, htmlAttributes: new { @class = "labellogin" })
+        </th>
+
+        <th>
+            @Html.LabelFor(model => model.Approvals.FirstOrDefault().DoubleBed, htmlAttributes: new { @class = "labellogin" })
+        </th>
+        <th>
+            @Html.LabelFor(model => model.Approvals.FirstOrDefault().SingleBed, htmlAttributes: new { @class = "labellogin" })
+        </th>
+        <th>
+            @Html.LabelFor(model => model.Approvals.FirstOrDefault().ShareRoom, htmlAttributes: new { @class = "labellogin" })
+        </th>
+                
+        <th>
+            @Html.LabelFor(model => model.Approvals.FirstOrDefault().RoomType, htmlAttributes: new { @class = "labellogin" })
+        </th>
+        
+        <th>
+            <p align="left">
+                @Html.Label("Select Room:", htmlAttributes: new { @class = "labellogin" })
+                <br/>
+                @foreach (var room in Model.BedRooms)
+                {
+                    
+                        @Html.Label(room.RoomNumber.ToString(), htmlAttributes: new { @class = "labelnumbers" })
+
+                 
+                }
+            </p>
+
+        </th>
+    </tr>
+
+@foreach (var item in Model.Approvals)
+{
+
+
+        <tr>
+            
+                       
+                <td>
+                    @Html.Partial("~/Views/Shared/_ProfilePrevPartial.cshtml", item.ApplyingTraveler)
+                </td>
+                <td class="setdown">
+                    @Html.Raw(item.CheckIn.ToShortDateString())
+                </td>
+                <td class="setdown">
+                    @Html.Raw(item.CheckOut.ToShortDateString())
+                </td>
+                <td class="setdown">
+                    @Html.DisplayFor(modelItem => item.DoubleBed)
+                </td>
+                <td class="setdown">
+                    @Html.DisplayFor(modelItem => item.SingleBed)
+                </td>
+                <td class="setdown">
+                    @Html.DisplayFor(modelItem => item.ShareRoom)
+                </td>
+                <td class="setdown">
+                    @Html.DisplayFor(modelItem => item.RoomType)
+                </td>
+                <td>
+                    <div class="form-group">
+                        @{
+                            
+                            
+                            foreach (var room in Model.BedRooms)
+                            {
+                               
+                                       
+                                    <div class="radio-inline" id="@item.ID">
+                                        @Html.RadioButton(item.ID.ToString(), room.ID)                                           
+                                    </div>
+                               
+                            }
+
+                        }
+                    </div>
+                </td>
+                <td>
+                    
+                    <button onclick="Reserve(@item.ID)">Reserve</button>
+                </td>
+                
+        </tr>
+
+    }
+
+</table>
+
+<script type="text/javascript">
+    function Reserve(rrqid) {
+        var rooms = document.getElementsByName(rrqid);
+        var roomnr;
+        for (var i = 0; i < rooms.length; i++) {
+            if (rooms[i].checked) {
+                roomnr = rooms[i].value;
+            }
+        }
+        
+        if (roomnr == undefined) {
+            alert("Please select a room!");
+        } else {
+            window.location.href = '/Requests/ReserveRoom/' + roomnr + '/' + rrqid;
+        }
+       
+    }
+</script>

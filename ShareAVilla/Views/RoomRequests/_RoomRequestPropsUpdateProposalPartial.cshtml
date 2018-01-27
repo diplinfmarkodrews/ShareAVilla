@@ -1,0 +1,137 @@
+﻿@model ShareAVilla.Models.RoomRequest.RoomRequestVMUser 
+    
+ @* To Create a RoomRequest *@
+@Html.HiddenFor(model=>model.ID)
+@Html.HiddenFor(model=>model.Request_ID)
+<div class="form-group">
+    <h2>Room Request</h2>
+    <h4>Proposal</h4>
+    <hr />
+
+    <div class="form-group">
+        <h5>Proposal by host:</h5>
+        <hr />
+        <div class="rrq-property">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.CheckInOwner)
+            </div>
+            <div class="rrq-property-item">
+                @Html.DisplayFor(model => model.CheckInOwner)
+            </div>
+        </div>
+        <div class="rrq-property">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.CheckOutOwner)
+            </div>
+            <div class="rrq-property-item">
+                @Html.DisplayFor(model => model.CheckOutOwner)
+            </div>
+        </div>
+        <div class="rrq-property">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.PriceOwner)
+            </div>
+            <div class="rrq-property-item">
+                @Html.DisplayFor(model => model.PriceOwner)
+            </div>
+        </div>
+        <div class="rrq-property">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.DoubleBedOwner)
+            </div>
+            <div class="rrq-property-item">
+                @Html.DisplayFor(model => model.DoubleBedOwner)
+            </div>
+        </div>
+        <div class="rrq-property">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.SingleBedOwner)
+            </div>
+            <div class="rrq-property-item">
+                @Html.DisplayFor(model => model.SingleBedOwner)
+            </div>
+        </div>
+        <div class="rrq-property">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.ShareRoomOwner)
+            </div>
+            <div class="rrq-property-item">
+                @Html.DisplayFor(model => model.ShareRoomOwner)
+            </div>
+        </div>
+        
+    </div>
+    <input type="submit" name="accept" value="accept" class="btn btn-default" />
+    
+    <hr />
+    <h5>Your application</h5>
+    <hr/>
+    <div class="rrq-property">
+        <div class="rrq-propertylabel">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="rrq-property-item">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="rrq-property-edit">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.CheckIn)
+            </div>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.CheckIn)
+                @Html.ValidationMessageFor(model => model.CheckIn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="rrq-property-edit">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.CheckOut)
+            </div>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.CheckOut)
+                @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="rrq-property-edit">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.DoubleBed)
+            </div>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.DoubleBed)
+                @Html.ValidationMessageFor(model => model.DoubleBed, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="rrq-property-edit">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.SingleBed)
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.SingleBed)
+                    @Html.ValidationMessageFor(model => model.SingleBed, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="rrq-property-edit">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.ShareRoom)
+            </div>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.ShareRoom)
+                @Html.ValidationMessageFor(model => model.ShareRoom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="rrq-property-edit">
+            <div class="rrq-propertylabel">
+                @Html.LabelFor(model => model.Text)
+            </div>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Text)
+                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+</div>

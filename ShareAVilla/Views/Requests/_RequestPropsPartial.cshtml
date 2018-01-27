@@ -1,0 +1,155 @@
+﻿@model ShareAVilla.Models.Request.RequestVMOwner
+                    
+
+@*@Html.HiddenFor(model => model.CheckIn)
+
+@Html.HiddenFor(model => model.CheckOut)*@
+<style type="text/css">
+    .entity {
+        margin-left: 30px;
+    }
+    .property {
+        margin-top:20px;
+    }
+</style>
+
+
+    
+    <div class="property-col" style="margin-left:50px">
+        <div class="property" style="margin-top: 20px">
+            <img src="@Url.Content(Model.Thumbs.FirstOrDefault())" />
+        </div>
+        <div class="property">
+            @Html.LabelFor(model => model.CheckIn, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2 textboxinput" style="margin-right:10px">
+                
+                    @Html.TextBoxFor(model => model.CheckIn, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date"})
+                    @Html.ValidationMessageFor(model => model.CheckIn, "", new { @class = "text-danger" })
+               
+            </div>
+            @Html.LabelFor(model => model.CheckOut, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2 textboxinput">
+                    @Html.TextBoxFor(model => model.CheckOut, "{0:yyyy-MM-dd}", new { @class = "form-control", type="date"  })
+                    @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+                
+            </div>
+        </div>
+   
+    <div class="property">
+        @Html.LabelFor(model => model.BedRooms, htmlAttributes: new { @class = "labellogin" })
+        <div class="col-md-2">
+            @Html.DisplayFor(model => model.BedRooms, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    @if (Model.requestType == ShareAVilla.Models.Request.RequestType.Bound)
+    {
+
+        <div class="property">
+            @Html.LabelFor(model => model.PricePNight, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.PricePNight, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.PricePWeek, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.PricePWeek, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.PricepMonth, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.PricepMonth, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="property">
+            @Html.LabelFor(model => model.TotalPricePRq, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.TotalPricePRq, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.PricePRoomPerTime, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.PricePRoomPerTime, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        @*<div class="property">
+            
+        </div>*@
+        <div class="property">
+            @Html.LabelFor(model => model.SalesPricePNight, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2 textboxinput">
+                @Html.EditorFor(model => model.SalesPricePNight, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SalesPricePNight, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.SalesPricePWeek, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2 textboxinput">
+                @Html.EditorFor(model => model.SalesPricePWeek, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SalesPricePWeek, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.SalesPricepMonth, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2 textboxinput">
+                @Html.EditorFor(model => model.SalesPricepMonth, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SalesPricepMonth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    }
+    @if (Model.requestType == ShareAVilla.Models.Request.RequestType.Free)
+    {
+        <div class="property">
+            @Html.LabelFor(model => model.MinPrice, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2 textboxinput">
+                @Html.EditorFor(model => model.MinPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinPrice, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.MaxPrice, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2 textboxinput">
+                @Html.EditorFor(model => model.MaxPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaxPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        <div class="property">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2 textboxinput">
+                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="property">
+            @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-2 textboxinput">
+                @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="property">
+            @Html.LabelFor(model => model.Lat, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-1 textboxinput">
+                @Html.EditorFor(model => model.Lat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Lat, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Lng, htmlAttributes: new { @class = "labellogin" })
+            <div class="col-md-1 textboxinput">
+                @Html.EditorFor(model => model.Lng, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Lng, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+    }
+
+    <div class="property">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "labellogin" })
+        <div class="col-md-4 textboxinput">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="property" style="height: 200%">
+        @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "labellogin" })
+        <div class="col-md-5" style="height:200%">
+            @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control col-md-5", style = "height: 200%" } })
+            @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+        </div>
+    </div>
+  
+</div>

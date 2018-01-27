@@ -1,0 +1,44 @@
+﻿@model ShareAVilla.Models.Find.SearchVM    
+
+@{
+    ViewBag.Title = "Search";
+}
+
+
+
+@using (Html.BeginForm( "Search", "Searches", FormMethod.Post, new { id = "myForm" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+   
+    @Html.HiddenFor(model => model.Search.Location);
+    @Html.HiddenFor(model => model.Search.CheckIn);
+    @Html.HiddenFor(model => model.Search.CheckOut);
+    @Html.HiddenFor(model => model.Search.FilterProps.Page)
+    @Html.HiddenFor(model => model.Search.FilterProps.PerPage)
+    @Html.HiddenFor(model => model.Search.nav, "Search_nav")
+    @Html.HiddenFor(model => model.Search.LikibuSessionID);
+    @Html.HiddenFor(model => model.Search.FilterProps.Sort);
+    @Html.HiddenFor(model => model.Search.FilterProps.PrivacyType);
+    @Html.HiddenFor(model => model.Search.FilterProps.PriceMax);
+    @Html.HiddenFor(model => model.Search.FilterProps.PriceMin);
+    @Html.HiddenFor(model => model.LikibuResults.TotalPages);
+    @Html.HiddenFor(model => model.LikibuResults.TotalResults);
+    @Html.HiddenFor(model => model.Language);
+    @Html.HiddenFor(model => model.Currency);
+    if (IsPost)
+    {
+        if (Model != null)
+        {
+            @Html.Partial("~/Views/Searches/_SearchPartial.cshtml", Model);
+        }
+    }
+    else
+    {
+        @Html.Partial("~/Views/Searches/_SearchPartial.cshtml");
+    }
+
+  
+}
